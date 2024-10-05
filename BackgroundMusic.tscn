@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://2d3m30oyomdi"]
 
-[ext_resource type="AudioStream" uid="uid://cal7rrm08mhf2" path="res://assets/Music/Roguelike Adventure Music Pack/Full Pack - MP3/Hills & Valleys [80 BPM]/Full/Full Track - All Sections (Play First).mp3" id="1_dxf0n"]
+[ext_resource type="AudioStream" uid="uid://c3e3n8lrsuwbe" path="res://assets/Music/Roguelike Adventure Music Pack/Full Pack - MP3/Hills & Valleys [80 BPM]/Full/Full Track - All Sections (Play First).mp3" id="1_dxf0n"]
 [ext_resource type="Script" path="res://BackgroundMusic.gd" id="1_ohpio"]
 
 [node name="Control" type="Control"]

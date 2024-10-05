@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://jn240cpqgkle"]
+
+[ext_resource type="Texture2D" uid="uid://b87lo3vgkc6h6" path="res://assets/creatures/Characters/monster1.png" id="1_56wkb"]
+[ext_resource type="Script" path="res://spider.gd" id="1_fqwxi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3kar"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_7sysc"]
+resource_name = "walk"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [30, 31, 32]
+}
+
+[sub_resource type="Animation" id="Animation_hx3ig"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [30]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1dhpk"]
+_data = {
+"RESET": SubResource("Animation_hx3ig"),
+"walk": SubResource("Animation_7sysc")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rm5m3"]
+
+[node name="spider" type="CharacterBody2D"]
+script = ExtResource("1_fqwxi")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_56wkb")
+hframes = 12
+vframes = 8
+frame = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 38)
+scale = Vector2(2.17204, 1.32871)
+shape = SubResource("CircleShape2D_v3kar")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1dhpk")
+}
+autoplay = "walk"
+speed_scale = 0.25
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 10)
+scale = Vector2(0.807663, 0.691838)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 36)
+scale = Vector2(2.86419, 2.0325)
+shape = SubResource("CircleShape2D_rm5m3")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
