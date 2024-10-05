@@ -1,39 +1,40 @@
-[gd_scene load_steps=51 format=3 uid="uid://b302iyi2my1wc"]
+[gd_scene load_steps=53 format=3 uid="uid://b302iyi2my1wc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k82fs"]
-[ext_resource type="Texture2D" uid="uid://cn8ok78ftkksd" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/IdleCatt.png" id="1_vm587"]
-[ext_resource type="Texture2D" uid="uid://bno6aupsd24lb" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/Idle2Catt.png" id="2_x82r7"]
-[ext_resource type="Texture2D" uid="uid://c4jj5o0600u8c" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/AttackCatt.png" id="3_q3igc"]
-[ext_resource type="Texture2D" uid="uid://hmgkas6b2hqe" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/Die.png" id="4_tfdw1"]
-[ext_resource type="Texture2D" uid="uid://cg8m2tfda0ime" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File1.png" id="4_u6bq7"]
-[ext_resource type="Texture2D" uid="uid://cpkhycytkqmvc" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/DieCatt.png" id="5_iavcn"]
-[ext_resource type="Texture2D" uid="uid://ccqq0bil5qotp" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File2.png" id="5_v2slh"]
-[ext_resource type="Texture2D" uid="uid://csbpst64f8lh5" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/HurtCattt.png" id="6_4cas1"]
-[ext_resource type="Texture2D" uid="uid://blrmcud6kdvf7" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File11.png" id="6_8pxwe"]
-[ext_resource type="Texture2D" uid="uid://jcxmjre35lic" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File12.png" id="7_i3bpx"]
-[ext_resource type="Texture2D" uid="uid://dnjxa0oygdrxa" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/JumpCattt.png" id="7_y0fdc"]
-[ext_resource type="Texture2D" uid="uid://27x2klvn51cw" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File13.png" id="8_fg6ks"]
-[ext_resource type="Texture2D" uid="uid://dci5p0cefrxbw" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/RunCatt.png" id="8_m148u"]
-[ext_resource type="Texture2D" uid="uid://drc823c88jbp6" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File14.png" id="9_hk0g3"]
-[ext_resource type="Texture2D" uid="uid://01yuk7fxcvc7" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/Sittingg.png" id="9_rhhh8"]
-[ext_resource type="Texture2D" uid="uid://b701bt1n3o6pe" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/SleepCatt.png" id="10_e6n4b"]
-[ext_resource type="Texture2D" uid="uid://c7da7w1vumvx3" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File15.png" id="10_kacak"]
-[ext_resource type="Texture2D" uid="uid://dj00adlk0r7nf" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File16.png" id="11_7cg3l"]
-[ext_resource type="FontFile" uid="uid://bmo4secrlmn3g" path="res://assets/fonts/Fibberish v1.0/fibberish.ttf" id="11_fl8ui"]
-[ext_resource type="Texture2D" uid="uid://bhet5b4mjjlad" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File17.png" id="12_y6ql2"]
-[ext_resource type="Texture2D" uid="uid://cohtpued4hdup" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File18.png" id="13_3iwlo"]
-[ext_resource type="AudioStream" uid="uid://b4p325g6tj465" path="res://assets/sfx/jump.wav" id="13_uisnj"]
-[ext_resource type="AudioStream" uid="uid://b0620qwlcf5hr" path="res://assets/sfx/attack.wav" id="14_637ts"]
-[ext_resource type="Texture2D" uid="uid://b5n0csousxvso" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File19.png" id="14_u48ws"]
-[ext_resource type="Texture2D" uid="uid://dor0n1wkw32jc" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File20.png" id="15_12ouc"]
-[ext_resource type="Texture2D" uid="uid://cbhsg7fynsiiu" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File3.png" id="16_krk36"]
-[ext_resource type="Texture2D" uid="uid://bykp1i40swsbs" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File4.png" id="17_gdedb"]
-[ext_resource type="Texture2D" uid="uid://dge4uee4hkc0q" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File5.png" id="18_y7316"]
-[ext_resource type="Texture2D" uid="uid://bkiys44ombt5r" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File6.png" id="19_vrb62"]
-[ext_resource type="Texture2D" uid="uid://70ecorn5enmr" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File7.png" id="20_ce7pi"]
-[ext_resource type="Texture2D" uid="uid://cnyk8gk74ioel" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File8.png" id="21_78p4m"]
-[ext_resource type="Texture2D" uid="uid://n4yb66vf3v2y" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File9.png" id="22_n80dc"]
-[ext_resource type="Texture2D" uid="uid://dvb7ej0nc4a2j" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File10.png" id="23_vocem"]
+[ext_resource type="Texture2D" uid="uid://bwlcdj6yjw2wu" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/IdleCatt.png" id="1_vm587"]
+[ext_resource type="Texture2D" uid="uid://n6xqvy01rvk8" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/Idle2Catt.png" id="2_x82r7"]
+[ext_resource type="Texture2D" uid="uid://r83rs2nb6p35" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/AttackCatt.png" id="3_q3igc"]
+[ext_resource type="Texture2D" uid="uid://bbnlp1g0vhvqh" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/Die.png" id="4_tfdw1"]
+[ext_resource type="Texture2D" uid="uid://bvb0nv01bb7e1" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File1.png" id="4_u6bq7"]
+[ext_resource type="Texture2D" uid="uid://7ekycql0e4v2" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/DieCatt.png" id="5_iavcn"]
+[ext_resource type="Texture2D" uid="uid://bfhmje7mpppvm" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File2.png" id="5_v2slh"]
+[ext_resource type="Texture2D" uid="uid://fkq2vuqc758x" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/HurtCattt.png" id="6_4cas1"]
+[ext_resource type="Texture2D" uid="uid://ca2v5rw5rej7a" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File11.png" id="6_8pxwe"]
+[ext_resource type="Texture2D" uid="uid://cogdrx77yx1tp" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File12.png" id="7_i3bpx"]
+[ext_resource type="Texture2D" uid="uid://nh0ifdkuh7jk" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/JumpCattt.png" id="7_y0fdc"]
+[ext_resource type="Texture2D" uid="uid://bdwi7gm3vnnvg" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File13.png" id="8_fg6ks"]
+[ext_resource type="Texture2D" uid="uid://vd7oaqpibha4" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/RunCatt.png" id="8_m148u"]
+[ext_resource type="Texture2D" uid="uid://cg77ila4kntoq" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File14.png" id="9_hk0g3"]
+[ext_resource type="Texture2D" uid="uid://bp3kk7tr65t58" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/Sittingg.png" id="9_rhhh8"]
+[ext_resource type="Texture2D" uid="uid://b04pj4ogba21i" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/SleepCatt.png" id="10_e6n4b"]
+[ext_resource type="Texture2D" uid="uid://dneugkmtbw8c1" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File15.png" id="10_kacak"]
+[ext_resource type="Texture2D" uid="uid://bvhd1apc6jm0b" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File16.png" id="11_7cg3l"]
+[ext_resource type="FontFile" uid="uid://blvx2pfxej7sj" path="res://assets/fonts/Fibberish v1.0/fibberish.ttf" id="11_fl8ui"]
+[ext_resource type="Texture2D" uid="uid://2xc2gb1jbohy" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File17.png" id="12_y6ql2"]
+[ext_resource type="Texture2D" uid="uid://nt084pt4xgm7" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File18.png" id="13_3iwlo"]
+[ext_resource type="AudioStream" uid="uid://2dp28rj45k4y" path="res://assets/sfx/jump.wav" id="13_uisnj"]
+[ext_resource type="AudioStream" uid="uid://cd3yhuwcm8ctg" path="res://assets/sfx/attack.wav" id="14_637ts"]
+[ext_resource type="Texture2D" uid="uid://clpbrcghv2ubd" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File19.png" id="14_u48ws"]
+[ext_resource type="Texture2D" uid="uid://b2qy6xbf6lbsx" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File20.png" id="15_12ouc"]
+[ext_resource type="Texture2D" uid="uid://bn73lw3qr1a4y" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File3.png" id="16_krk36"]
+[ext_resource type="Texture2D" uid="uid://uvhgk27l34mp" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File4.png" id="17_gdedb"]
+[ext_resource type="Texture2D" uid="uid://w03jh7b4g8na" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File5.png" id="18_y7316"]
+[ext_resource type="Texture2D" uid="uid://g686lii4wuh3" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File6.png" id="19_vrb62"]
+[ext_resource type="Texture2D" uid="uid://cqnfuj6rrq6ah" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File7.png" id="20_ce7pi"]
+[ext_resource type="Texture2D" uid="uid://vejaewe8jqp0" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File8.png" id="21_78p4m"]
+[ext_resource type="Texture2D" uid="uid://cnkfao1lqgch1" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File9.png" id="22_n80dc"]
+[ext_resource type="Texture2D" uid="uid://cmkpospjoahwf" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File10.png" id="23_vocem"]
+[ext_resource type="AudioStream" uid="uid://dm6psyky71l0c" path="res://assets/sfx/tookDmg.wav" id="35_txoo7"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_gyecd"]
 frames = 20
@@ -77,6 +78,8 @@ frame_18/texture = ExtResource("14_u48ws")
 frame_18/duration = 1.0
 frame_19/texture = ExtResource("15_12ouc")
 frame_19/duration = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_boxub"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ao8py"]
 radius = 17.3473
@@ -408,6 +411,8 @@ _data = {
 font = ExtResource("11_fl8ui")
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+floor_stop_on_slope = false
 script = ExtResource("1_k82fs")
 
 [node name="sprites" type="Node2D" parent="."]
@@ -426,6 +431,14 @@ visible = false
 position = Vector2(20, 0)
 scale = Vector2(0.1, 0.1)
 texture = SubResource("AnimatedTexture_gyecd")
+
+[node name="Area2D" type="Area2D" parent="sprites/slash"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sprites/slash/Area2D"]
+position = Vector2(20, 20)
+scale = Vector2(8.87172, 8.87172)
+shape = SubResource("CircleShape2D_boxub")
+disabled = true
 
 [node name="AttackCatt" type="Sprite2D" parent="sprites"]
 visible = false
@@ -482,7 +495,6 @@ autoplay = "idle"
 zoom = Vector2(2, 2)
 
 [node name="Label" type="Label" parent="Camera2D"]
-visible = false
 offset_left = -286.0
 offset_top = -160.0
 offset_right = -246.0
@@ -496,3 +508,9 @@ volume_db = -10.0
 [node name="attack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_637ts")
 volume_db = -10.0
+
+[node name="tookDmg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_txoo7")
+volume_db = -10.0
+
+[connection signal="body_entered" from="sprites/slash/Area2D" to="." method="_on_area_2d_body_entered"]

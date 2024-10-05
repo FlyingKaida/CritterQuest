@@ -1,11 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg1w4joh5k7pd"]
+[gd_scene load_steps=5 format=3 uid="uid://cg1w4joh5k7pd"]
 
 [ext_resource type="PackedScene" uid="uid://c7tnsdvnj0pbm" path="res://tilemap_template.tscn" id="1_qutl4"]
 [ext_resource type="PackedScene" uid="uid://b302iyi2my1wc" path="res://player.tscn" id="2_favcv"]
+[ext_resource type="PackedScene" uid="uid://5vi8r746imbm" path="res://wolf.tscn" id="3_1w6ja"]
+[ext_resource type="PackedScene" uid="uid://jn240cpqgkle" path="res://spider.tscn" id="4_7xi04"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Tilemap Template" parent="." instance=ExtResource("1_qutl4")]
+texture_filter = 1
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_favcv")]
+texture_filter = 1
 position = Vector2(575, 478)
+
+[node name="Wolf" parent="." instance=ExtResource("3_1w6ja")]
+position = Vector2(583, 552)
+
+[node name="Wolf3" parent="." instance=ExtResource("3_1w6ja")]
+position = Vector2(420, 295)
+
+[node name="Wolf2" parent="." instance=ExtResource("3_1w6ja")]
+position = Vector2(536, 291)
+
+[node name="spider" parent="." instance=ExtResource("4_7xi04")]
+position = Vector2(648, 313)

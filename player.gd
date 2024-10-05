@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 @export var id = 0
-var dir = 0
+#var dir = 0
 var moving = false
-var direction : Vector2 = Vector2.ZERO
+var dir : Vector2 = Vector2.ZERO
 var _gravity = 400
 var djump = false
 var is_jumping = false
@@ -22,7 +22,8 @@ var dash_timer = 0
 	'hp': 10,
 	'maxhp': 10,
 	'speed': 100,
-	'jump_force': 200
+	'jump_force': 200,
+	'atk': 5,
 }
 
 @export var upgrades = {
@@ -54,7 +55,6 @@ func get_input(_delta):
 		if Input.is_action_just_pressed("space"):
 			if is_attacking == false:
 				is_attacking=true
-				print('attacking')
 				atk_timer =1
 				$sprites/slash.visible=true
 				$attack.play()
@@ -125,6 +125,11 @@ func get_anim(_delta):
 		is_jumping = false
 	if atk_timer <= 0:
 		is_attacking = false
+		$sprites/slash/Area2D/CollisionShape2D.disabled=true
+	if hit_timer > 0:
+		#$sprites/HurtCattt.visible=true
+		#$AnimationPlayer.play("hurt")
+		hit_timer-=_delta
 	
 	if stats.hp <= 0:
 		if options.gore == 1:
@@ -133,17 +138,18 @@ func get_anim(_delta):
 		else:
 			$sprites/Die.visible=true
 			$AnimationPlayer.play("die")
-	
-	elif hit_timer > 0:
-		$sprites/HurtCattt.visible=true
-		$AnimationPlayer.play("hurt")
-		hit_timer-=_delta
+	#
+	#elif hit_timer > 0:
+		#$sprites/HurtCattt.visible=true
+		#$AnimationPlayer.play("hurt")
+		#hit_timer-=_delta
 		
 	elif is_attacking:
 		$sprites/AttackCatt.visible=true
 		$sprites/slash.visible=true
 		$AnimationPlayer.play("attack")
 		atk_timer-=_delta
+		$sprites/slash/Area2D/CollisionShape2D.disabled=false
 		
 	elif djump == true:
 		$sprites/JumpCattt.visible=true
@@ -173,14 +179,33 @@ func get_anim(_delta):
 		$AnimationPlayer.play("idle")
 
 
+func hit(atk, enemyPos):
+	hit_timer=2
+	stats.hp-=atk
+	velocity = (-enemyPos * .40) 
+	$tookDmg.play()
+	for i in range(10):
+		$sprites.modulate = Color.RED
+		await get_tree().create_timer(0.1).timeout
+		$sprites.modulate = Color.WHITE
+		await get_tree().create_timer(0.1).timeout
+	
+	
+
 func _physics_process(_delta):
 	action_timer+= _delta
 	hide_anims()
 	get_input(_delta)
 	get_anim(_delta)
-	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
+	dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	set_velocity(velocity)
 	move_and_slide()
 	velocity = velocity
-	$Camera2D/Label.text =  "Last acted: " + str(int(action_timer)) +  "\nHit Timer: " + str(int(hit_timer))
+	$Camera2D/Label.text =  "HP: " + str(stats.hp) +"/"+str(stats.maxhp) + "\nLast acted: " + str(int(action_timer)) +  "\nHit Timer: " + str(int(hit_timer)) +  "\nVelocity: " + str(velocity)
+
+
+
+func _on_area_2d_body_entered(body):
+	if  body.name != "foreground-tilemap":
+		body.hit(stats.atk, $".".position)
 
