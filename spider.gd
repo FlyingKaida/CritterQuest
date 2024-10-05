@@ -14,6 +14,9 @@ var hit_timer = 0
 var dash_timer = 0
 var dir = 1
 
+
+const _projectile = preload("res://projectile_web.tscn")
+
 @export var options = {
 	'gore': 1,
 	'volume': 100,
@@ -51,6 +54,22 @@ func get_input(_delta):
 		djump = false
 	
 	if stats.hp > 0:
+		
+		if randi_range(1, 1000) < 100:
+			#print($".".get_parent())
+			var projectile = _projectile.instantiate()
+			$".".get_parent().get_node("projectiles").add_child(projectile)	
+			
+			projectile.dir = -dir
+			projectile.position = position
+			#projectile.position.y += 40
+			#projectile.position.x += 100*dir
+			
+			
+			
+			#projectile.flip
+			#projectile.transform.origin = Vector3( randf_range(-50, 50), 100, randf_range(-50, 50) )
+			projectile.name = "Shot_Web"
 		
 		if velocity.y >= 200:
 			velocity.y = 200
@@ -99,7 +118,7 @@ func hit(atk, enemyPos):
 	
 	
 func _on_area_2d_body_entered(body):
-	print(body)
 	if body.name != "spider" and body.name != "foreground-tilemap":
+		print(str(body)+" entered spider area")
 		body.hit(stats.atk, $".".position)
 		

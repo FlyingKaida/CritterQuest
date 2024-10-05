@@ -492,7 +492,6 @@ libraries = {
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 
 [node name="Label" type="Label" parent="Camera2D"]
 offset_left = -286.0

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5vi8r746imbm" path="res://wolf.tscn" id="3_1w6ja"]
 [ext_resource type="PackedScene" uid="uid://jn240cpqgkle" path="res://spider.tscn" id="4_7xi04"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="Tilemap Template" parent="." instance=ExtResource("1_qutl4")]
 texture_filter = 1
@@ -17,11 +17,7 @@ position = Vector2(575, 478)
 [node name="Wolf" parent="." instance=ExtResource("3_1w6ja")]
 position = Vector2(583, 552)
 
-[node name="Wolf3" parent="." instance=ExtResource("3_1w6ja")]
-position = Vector2(420, 295)
-
-[node name="Wolf2" parent="." instance=ExtResource("3_1w6ja")]
-position = Vector2(536, 291)
-
 [node name="spider" parent="." instance=ExtResource("4_7xi04")]
 position = Vector2(648, 313)
+
+[node name="projectiles" type="Node2D" parent="."]
