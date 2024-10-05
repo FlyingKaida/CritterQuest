@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://2d3m30oyomdi"]
+
+[ext_resource type="AudioStream" uid="uid://cal7rrm08mhf2" path="res://assets/Music/Roguelike Adventure Music Pack/Full Pack - MP3/Hills & Valleys [80 BPM]/Full/Full Track - All Sections (Play First).mp3" id="1_dxf0n"]
+[ext_resource type="Script" path="res://BackgroundMusic.gd" id="1_ohpio"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ohpio")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_dxf0n")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

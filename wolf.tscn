@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://5vi8r746imbm"]
+
+[ext_resource type="Script" path="res://wolf.gd" id="1_fbffr"]
+[ext_resource type="Texture2D" uid="uid://bbwj2pfe8t6nw" path="res://assets/Characters/$monster_wolf1.png" id="1_jij6x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bowa3"]
+
+[node name="Wolf" type="CharacterBody2D"]
+script = ExtResource("1_fbffr")
+
+[node name="WolfSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_jij6x")
+hframes = 3
+vframes = 4
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 25)
+scale = Vector2(3.48, 1.48)
+shape = SubResource("CapsuleShape2D_bowa3")
