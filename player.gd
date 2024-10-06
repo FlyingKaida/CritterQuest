@@ -129,6 +129,10 @@ func hide_anims():
 	
 
 func get_anim(_delta):
+	if webbed_timer>0:
+		$Web.visible = true
+	else:
+		$Web.visible = false
 	
 	if is_on_floor() and ! is_on_wall():
 		is_jumping = false
@@ -197,11 +201,11 @@ func hit(atk, enemyPos, status="none"):
 	if atk > 0:
 		velocity = (-enemyPos * .20) 
 		$tookDmg.play()
-	for i in range(10):
-		$sprites.modulate = Color.RED
-		await get_tree().create_timer(0.1).timeout
-		$sprites.modulate = Color.WHITE
-		await get_tree().create_timer(0.1).timeout
+		for i in range(10):
+			$sprites.modulate = Color.RED
+			await get_tree().create_timer(0.1).timeout
+			$sprites.modulate = Color.WHITE
+			await get_tree().create_timer(0.1).timeout
 	
 	
 

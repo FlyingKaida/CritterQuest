@@ -50,28 +50,21 @@ func _ready():
 
 func get_input(_delta):
 	
-	if is_on_floor() == false:
-		velocity.y += _gravity * _delta
-	else:
-		djump = false
+	#if is_on_floor() == false:
+		#velocity.y += _gravity * _delta
+	#else:
+		#djump = false
 	
 	if stats.hp > 0:
 		
-		if randi_range(1, 1000) < 10:
-			#print($".".get_parent())
-			var projectile = _projectile.instantiate()
-			$".".get_parent().get_node("projectiles").add_child(projectile)	
-			
-			projectile.dir = -dir
-			projectile.position = Vector2(position.x, position.y+20)
-			#projectile.position.y += 40
-			#projectile.position.x += 100*dir
-			
-			
-			
-			#projectile.flip
-			#projectile.transform.origin = Vector3( randf_range(-50, 50), 100, randf_range(-50, 50) )
-			projectile.name = "Shot_Web"
+		### SHOOT PROJECTILE ###
+		#if randi_range(1, 1000) < 10:
+			##print($".".get_parent())
+			#var projectile = _projectile.instantiate()
+			#$".".get_parent().get_node("projectiles").add_child(projectile)	
+			#projectile.dir = -dir
+			#projectile.position = Vector2(position.x, position.y+20)
+			#projectile.name = "Shot_Web"
 		
 		if velocity.y >= 200:
 			velocity.y = 200
@@ -109,6 +102,7 @@ func _physics_process(_delta):
 	move_and_slide()
 	velocity = velocity
 	#$Camera2D/Label.text =  "Last acted: " + str(int(action_timer)) +  "\nHit Timer: " + str(int(hit_timer))
+
 	if stats.hp<=0:
 		var poof = _poof.instantiate()
 		$".".get_parent().get_node("deathPoofs").add_child(poof)	
@@ -136,7 +130,7 @@ func hit(atk, enemyPos, status="none"):
 	
 	
 func _on_area_2d_body_entered(body):
-	if body.name != "spider" and body.name != "foreground-tilemap":
-		print(str(body)+" entered spider area")
+	if body.name != "bird" and body.name != "foreground-tilemap":
+		print(str(body)+" entered bird area")
 		body.hit(stats.atk, $".".position)
 		

@@ -13,6 +13,7 @@ var action_timer = 0
 var hit_timer = 0
 var dash_timer = 0
 var dir = 1
+var webbed_timer = 0
 
 @export var options = {
 	'gore': 1,
@@ -38,6 +39,7 @@ var dir = 1
 	
 }
 
+const _poof = preload("res://MobDefeated.tscn")
 
 func _ready():
 
@@ -52,21 +54,7 @@ func get_input(_delta):
 		#velocity.y = -1 * _delta
 	
 	if stats.hp > 0:
-		
-		
-		#if Input.is_action_just_pressed("space"):
-			#if is_attacking == false:
-				#is_attacking=true
-				#print('attacking')
-				#atk_timer =1
-				#$sprites/slash.visible=true
-				#$attack.play()
-			#action_timer=0
-			#pass
 
-
-				
-			
 		if velocity.y >= 200:
 			velocity.y = 200
 		
@@ -80,7 +68,10 @@ func get_input(_delta):
 			
 		#if dir != 0:
 		rev_sprite(dir)
-		velocity.x = dir  * stats.speed 
+		if webbed_timer>0:
+			velocity.x = dir  * (stats.speed  / 2)
+		else:
+			velocity.x = dir  * stats.speed 
 		
 	move_and_slide()
 	#update_animations(direction)
@@ -88,18 +79,7 @@ func get_input(_delta):
 func rev_sprite(dir):
 	$WolfSprite.flip_h = (dir == -1)
 
-#func hide_anims():
-	#$sprites/IdleCatt.visible=false
-	#$sprites/Idle2Catt.visible=false
-	#$sprites/AttackCatt.visible=false
-	#$sprites/Die.visible=false
-	#$sprites/DieCatt.visible=false
-	#$sprites/HurtCattt.visible=false
-	#$sprites/JumpCattt.visible=false
-	#$sprites/RunCatt.visible=false
-	#$sprites/Sittingg.visible=false
-	#$sprites/SleepCatt.visible=false
-	#$sprites/slash.visible=false
+
 	
 
 func get_anim(_delta):
@@ -146,6 +126,10 @@ func get_anim(_delta):
 
 
 func _physics_process(_delta):
+	webbed_timer-= _delta
+	if webbed_timer<=0:
+		webbed_timer=0
+		
 	action_timer-= _delta
 	#hide_anims()
 	get_input(_delta)
@@ -156,18 +140,29 @@ func _physics_process(_delta):
 	velocity = velocity
 	#$Camera2D/Label.text =  "Last acted: " + str(int(action_timer)) +  "\nHit Timer: " + str(int(hit_timer))
 	if stats.hp<=0:
+		var poof = _poof.instantiate()
+		$".".get_parent().get_node("deathPoofs").add_child(poof)	
+		poof.position = Vector2(position.x, position.y+20)
 		queue_free()
 
 
-func hit(atk, enemyPos):
+
+func hit(atk, enemyPos, status="none"):
+	if status == "webbed":
+		webbed_timer = 10
+		
 	hit_timer=5
 	stats.hp-=atk
-	velocity = (-enemyPos * .1) 
-	for i in range(10):
-		$WolfSprite.modulate = Color.RED
-		await get_tree().create_timer(0.1).timeout
-		$WolfSprite.modulate = Color.WHITE
-		await get_tree().create_timer(0.1).timeout
+	if atk > 0:
+		velocity = (-enemyPos * .1) 
+		for i in range(10):
+			$WolfSprite.modulate = Color.RED
+			await get_tree().create_timer(0.1).timeout
+			$WolfSprite.modulate = Color.WHITE
+			await get_tree().create_timer(0.1).timeout
+		
+		
+	
 	
 	
 func _on_area_2d_body_entered(body):

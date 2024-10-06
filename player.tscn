@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://cnkfao1lqgch1" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File9.png" id="22_n80dc"]
 [ext_resource type="Texture2D" uid="uid://cmkpospjoahwf" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File10.png" id="23_vocem"]
 [ext_resource type="AudioStream" uid="uid://dm6psyky71l0c" path="res://assets/sfx/tookDmg.wav" id="35_txoo7"]
-[ext_resource type="Texture2D" uid="uid://bfmb2d7gy6e5s" path="res://assets/web.jpg" id="36_fabkm"]
+[ext_resource type="Texture2D" uid="uid://che2c1r5nfjtb" path="res://assets/web.png" id="36_q20bd"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_gyecd"]
 frames = 20
@@ -522,10 +522,11 @@ volume_db = -10.0
 
 [node name="Web" type="Sprite2D" parent="."]
 visible = false
+modulate = Color(0.584379, 0.316405, 6.73831e-07, 1)
 material = SubResource("ShaderMaterial_j7x14")
-position = Vector2(0.666666, 4.76837e-07)
-rotation = 2.78534
-scale = Vector2(0.006, 0.006)
-texture = ExtResource("36_fabkm")
+position = Vector2(-2, 5.33333)
+rotation = 0.673524
+scale = Vector2(0.00359174, 0.00432603)
+texture = ExtResource("36_q20bd")
 
 [connection signal="body_entered" from="sprites/slash/Area2D" to="." method="_on_area_2d_body_entered"]
