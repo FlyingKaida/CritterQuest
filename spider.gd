@@ -23,8 +23,8 @@ const _projectile = preload("res://projectile_web.tscn")
 }
 
 @export var stats = {
-	'hp': 10,
-	'maxhp': 10,
+	'hp': 5,
+	'maxhp': 5,
 	'speed': 60,
 	'jump_force': 200,
 	'atk': 1,
@@ -55,13 +55,13 @@ func get_input(_delta):
 	
 	if stats.hp > 0:
 		
-		if randi_range(1, 1000) < 100:
+		if randi_range(1, 1000) < 10:
 			#print($".".get_parent())
 			var projectile = _projectile.instantiate()
 			$".".get_parent().get_node("projectiles").add_child(projectile)	
 			
 			projectile.dir = -dir
-			projectile.position = position
+			projectile.position = Vector2(position.x, position.y+20)
 			#projectile.position.y += 40
 			#projectile.position.x += 100*dir
 			
@@ -75,7 +75,8 @@ func get_input(_delta):
 			velocity.y = 200
 		
 		if action_timer <= 0:
-			dir = randi_range(-1,1)
+			
+			dir = [-1,1][randi() % 2]
 			action_timer = 5
 		
 		if is_on_wall_only():

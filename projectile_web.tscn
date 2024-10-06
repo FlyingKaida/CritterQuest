@@ -1,23 +1,28 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbaqbmt070cq3"]
 
-[ext_resource type="Script" path="res://Area2D.gd" id="1_qtugq"]
+[ext_resource type="Script" path="res://projectile_web.gd" id="1_jweu8"]
 [ext_resource type="Texture2D" uid="uid://c7yhf4e6mqas6" path="res://assets/laserRed01.png" id="2_p4p82"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj3ms"]
 
-[node name="web" type="Area2D"]
+[node name="Node2D" type="Node2D"]
+position = Vector2(-41, 0)
+script = ExtResource("1_jweu8")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-14, 0)
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_qtugq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 modulate = Color(0.237119, 0.422596, 0.328735, 1)
 position = Vector2(24, 0.5)
 rotation = -1.5708
 texture = ExtResource("2_p4p82")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 0.5)
+scale = Vector2(0.963591, 0.963591)
 shape = SubResource("CircleShape2D_aj3ms")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

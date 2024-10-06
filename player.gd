@@ -12,6 +12,7 @@ var atk_timer = 0
 var action_timer = 0
 var hit_timer = 0
 var dash_timer = 0
+var webbed_timer = 0
 
 @export var options = {
 	'gore': 1,
@@ -63,18 +64,23 @@ func get_input(_delta):
 
 		
 		if Input.is_action_just_pressed("ui_up"):
-			if is_on_floor():
-				velocity.y = -stats.jump_force
-				is_jumping = true
-				action_timer=0
-				$jump.play()
-			elif ! djump :
-				if upgrades.djump == true:
-					djump = true
-					velocity.y = -stats.jump_force
+			if ! is_on_wall():
+				if is_on_floor():
+					if webbed_timer>0:
+						velocity.y = -stats.jump_force/1.5
+					else:
+						velocity.y = -stats.jump_force
+						
 					is_jumping = true
 					action_timer=0
 					$jump.play()
+				elif ! djump :
+					if upgrades.djump == true:
+						djump = true
+						velocity.y = -stats.jump_force
+						is_jumping = true
+						action_timer=0
+						$jump.play()
 				
 			
 		if velocity.y >= 500:
@@ -85,8 +91,11 @@ func get_input(_delta):
 		if direction != 0:
 			action_timer=0
 			rev_sprite(direction)
-			
-		velocity.x = direction  * stats.speed 
+		
+		if webbed_timer>0:
+			velocity.x = direction  * stats.speed  / 2
+		else:
+			velocity.x = direction  * stats.speed 
 		
 	move_and_slide()
 	#update_animations(direction)
@@ -121,7 +130,7 @@ func hide_anims():
 
 func get_anim(_delta):
 	
-	if is_on_floor():
+	if is_on_floor() and ! is_on_wall():
 		is_jumping = false
 	if atk_timer <= 0:
 		is_attacking = false
@@ -179,11 +188,15 @@ func get_anim(_delta):
 		$AnimationPlayer.play("idle")
 
 
-func hit(atk, enemyPos):
+func hit(atk, enemyPos, status="none"):
+	if status == "webbed":
+		webbed_timer = 10
+		
 	hit_timer=2
 	stats.hp-=atk
-	velocity = (-enemyPos * .40) 
-	$tookDmg.play()
+	if atk > 0:
+		velocity = (-enemyPos * .20) 
+		$tookDmg.play()
 	for i in range(10):
 		$sprites.modulate = Color.RED
 		await get_tree().create_timer(0.1).timeout
@@ -194,6 +207,13 @@ func hit(atk, enemyPos):
 
 func _physics_process(_delta):
 	action_timer+= _delta
+	if action_timer>=1000:
+		action_timer==1000
+		
+	webbed_timer-= _delta
+	if webbed_timer<=0:
+		webbed_timer=0
+		
 	hide_anims()
 	get_input(_delta)
 	get_anim(_delta)
@@ -206,6 +226,7 @@ func _physics_process(_delta):
 
 
 func _on_area_2d_body_entered(body):
-	if  body.name != "foreground-tilemap":
+	print(body)
+	if  body.name != "foreground-tilemap" and body.name != "foreground-tilemap2":
 		body.hit(stats.atk, $".".position)
 

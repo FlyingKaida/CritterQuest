@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://b302iyi2my1wc"]
+[gd_scene load_steps=53 format=3 uid="uid://b302iyi2my1wc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k82fs"]
 [ext_resource type="Texture2D" uid="uid://bwlcdj6yjw2wu" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/IdleCatt.png" id="1_vm587"]
@@ -35,7 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://cnkfao1lqgch1" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File9.png" id="22_n80dc"]
 [ext_resource type="Texture2D" uid="uid://cmkpospjoahwf" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File10.png" id="23_vocem"]
 [ext_resource type="AudioStream" uid="uid://dm6psyky71l0c" path="res://assets/sfx/tookDmg.wav" id="35_txoo7"]
-[ext_resource type="Texture2D" uid="uid://bfmb2d7gy6e5s" path="res://assets/web.jpg" id="36_fabkm"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_gyecd"]
 frames = 20
@@ -411,15 +410,11 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_qh4wp"]
 font = ExtResource("11_fl8ui")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j7x14"]
-
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
 collision_mask = 3
 floor_stop_on_slope = false
-floor_constant_speed = true
-floor_block_on_wall = false
 script = ExtResource("1_k82fs")
 
 [node name="sprites" type="Node2D" parent="."]
@@ -519,13 +514,5 @@ volume_db = -10.0
 [node name="tookDmg" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("35_txoo7")
 volume_db = -10.0
-
-[node name="Web" type="Sprite2D" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_j7x14")
-position = Vector2(0.666666, 4.76837e-07)
-rotation = 2.78534
-scale = Vector2(0.006, 0.006)
-texture = ExtResource("36_fabkm")
 
 [connection signal="body_entered" from="sprites/slash/Area2D" to="." method="_on_area_2d_body_entered"]
