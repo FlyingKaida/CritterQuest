@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://bc60alonuq5vo"]
+
+[ext_resource type="Script" path="res://coin.gd" id="1_0qljt"]
+[ext_resource type="Texture2D" uid="uid://gesbrf6ryfu1" path="res://assets/Bakadri's mini_biome_v1.3/animated_tiles/small coin.png" id="1_mihyr"]
+[ext_resource type="AudioStream" uid="uid://bdi3pnigl5362" path="res://assets/sfx/pickupCoin.wav" id="3_jry7x"]
+
+[sub_resource type="Animation" id="Animation_f3fmo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fc0kt"]
+resource_name = "spin"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_51oji"]
+_data = {
+"RESET": SubResource("Animation_f3fmo"),
+"spin": SubResource("Animation_fc0kt")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ts3o"]
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_0qljt")
+
+[node name="SmallCoin" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_mihyr")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SmallCoin")
+libraries = {
+"": SubResource("AnimationLibrary_51oji")
+}
+autoplay = "spin"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+texture_filter = 1
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_0ts3o")
+
+[node name="coin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jry7x")
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

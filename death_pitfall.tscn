@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3sjdo3k6b42g"]
+
+[ext_resource type="Script" path="res://levels/death pitfall.gd" id="1_jwaxt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujkah"]
+size = Vector2(188.5, 169)
+
+[node name="deathPitfall" type="Node2D"]
+
+[node name="death pitfall" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16387
+script = ExtResource("1_jwaxt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death pitfall"]
+shape = SubResource("RectangleShape2D_ujkah")
+
+[connection signal="body_entered" from="death pitfall" to="death pitfall" method="_on_body_entered"]
+[connection signal="body_exited" from="death pitfall" to="death pitfall" method="_on_body_exited"]

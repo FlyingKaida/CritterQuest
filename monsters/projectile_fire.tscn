@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4gap6ofuvqo2"]
+
+[ext_resource type="Script" path="res://monsters/projectile_fire.gd" id="1_r7gqt"]
+[ext_resource type="Texture2D" uid="uid://b4jeaes2rxp82" path="res://assets/pixel-animations-and-effects-pack/pixel_animations_gfxpack/animationsheets/fire.png" id="2_hl7ye"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aj3ms"]
+
+[sub_resource type="Animation" id="Animation_yv2go"]
+resource_name = "fireball"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 8, 7]
+}
+
+[sub_resource type="Animation" id="Animation_4ui5v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1aan"]
+_data = {
+"RESET": SubResource("Animation_4ui5v"),
+"fireball": SubResource("Animation_yv2go")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_r7gqt")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(14, -2)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+modulate = Color(0.597622, 0.300118, 1.92523e-07, 1)
+position = Vector2(-15, 3)
+texture = ExtResource("2_hl7ye")
+hframes = 5
+vframes = 6
+frame = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 0.5)
+scale = Vector2(0.963591, 0.963591)
+shape = SubResource("CircleShape2D_aj3ms")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D"]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_h1aan")
+}
+autoplay = "fireball"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

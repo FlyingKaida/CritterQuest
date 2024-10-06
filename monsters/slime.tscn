@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://yxhl747sixkv"]
+
+[ext_resource type="Script" path="res://monsters/slime.gd" id="1_gn35y"]
+[ext_resource type="Texture2D" uid="uid://dfydxyyow1tjc" path="res://assets/creatures/enemies/slimes/green/walk/slime_green_walk.png" id="2_tctwx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ck4fm"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_a0vwn"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_8oeap"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m35ro"]
+_data = {
+"RESET": SubResource("Animation_a0vwn"),
+"walk": SubResource("Animation_8oeap")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6atco"]
+
+[node name="Slime" type="CharacterBody2D" groups=["monster"]]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_gn35y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 13)
+scale = Vector2(3.60673, 2.89151)
+shape = SubResource("CircleShape2D_ck4fm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m35ro")
+}
+autoplay = "walk"
+speed_scale = 0.25
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, 13)
+scale = Vector2(3.42704, 2.79545)
+shape = SubResource("CircleShape2D_6atco")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-3, 23)
+scale = Vector2(6, 6)
+texture = ExtResource("2_tctwx")
+hframes = 4
+vframes = 4
+frame = 6
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

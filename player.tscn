@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://b302iyi2my1wc"]
+[gd_scene load_steps=61 format=3 uid="uid://b302iyi2my1wc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k82fs"]
 [ext_resource type="Texture2D" uid="uid://bwlcdj6yjw2wu" path="res://assets/cats 2d/ThreeColorPaid/ThreeColorPaid/IdleCatt.png" id="1_vm587"]
@@ -34,7 +34,10 @@
 [ext_resource type="Texture2D" uid="uid://vejaewe8jqp0" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File8.png" id="21_78p4m"]
 [ext_resource type="Texture2D" uid="uid://cnkfao1lqgch1" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File9.png" id="22_n80dc"]
 [ext_resource type="Texture2D" uid="uid://cmkpospjoahwf" path="res://assets/Sword Slashes/Sword Slashes/White Group Slashes/File10.png" id="23_vocem"]
+[ext_resource type="PackedScene" uid="uid://bc60alonuq5vo" path="res://coin.tscn" id="33_6qhtx"]
+[ext_resource type="Texture2D" uid="uid://dlx1ockdhxcwy" path="res://assets/pixel-animations-and-effects-pack/pixel_animations_gfxpack/animationsheets/clock.png" id="34_fm46n"]
 [ext_resource type="AudioStream" uid="uid://dm6psyky71l0c" path="res://assets/sfx/tookDmg.wav" id="35_txoo7"]
+[ext_resource type="Texture2D" uid="uid://c7unvepqrqeo7" path="res://assets/pixel-animations-and-effects-pack/pixel_animations_gfxpack/animationsheets/object.png" id="35_wwf53"]
 [ext_resource type="Texture2D" uid="uid://che2c1r5nfjtb" path="res://assets/web.png" id="36_q20bd"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_gyecd"]
@@ -82,11 +85,24 @@ frame_19/duration = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_boxub"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ao8py"]
-radius = 17.3473
-height = 34.6946
+[sub_resource type="Animation" id="Animation_f41wg"]
+resource_name = "idle"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/IdleCatt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
 
-[sub_resource type="Animation" id="Animation_7jkxw"]
+[sub_resource type="Animation" id="Animation_mitu8"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -115,7 +131,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprites/AttackCatt:frame")
+tracks/2/path = NodePath("sprites/slash:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -127,7 +143,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("sprites/Die:frame")
+tracks/3/path = NodePath("sprites/AttackCatt:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -139,7 +155,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("sprites/DieCatt:frame")
+tracks/4/path = NodePath("sprites/Die:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -151,7 +167,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("sprites/HurtCattt:frame")
+tracks/5/path = NodePath("sprites/DieCatt:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -163,7 +179,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("sprites/JumpCattt:frame")
+tracks/6/path = NodePath("sprites/HurtCattt:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -175,7 +191,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("sprites/RunCatt:frame")
+tracks/7/path = NodePath("sprites/JumpCattt:frame")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -187,7 +203,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("sprites/Sittingg:frame")
+tracks/8/path = NodePath("sprites/RunCatt:frame")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -199,7 +215,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("sprites/SleepCatt:frame")
+tracks/9/path = NodePath("sprites/Sittingg:frame")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -208,109 +224,22 @@ tracks/9/keys = {
 "update": 1,
 "values": [0]
 }
-
-[sub_resource type="Animation" id="Animation_n6cjp"]
-resource_name = "attack"
-length = 0.85
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprites/AttackCatt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("sprites/SleepCatt:frame")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+"values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_5wo25"]
-resource_name = "die"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprites/Die:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-}
-
-[sub_resource type="Animation" id="Animation_iqnsn"]
-resource_name = "die_noblood"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprites/DieCatt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-}
-
-[sub_resource type="Animation" id="Animation_0kted"]
-resource_name = "djump"
-length = 1.25
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprites/JumpCattt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-}
-
-[sub_resource type="Animation" id="Animation_2xvf4"]
-resource_name = "hurt"
-length = 0.68
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprites/HurtCattt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-
-[sub_resource type="Animation" id="Animation_1cby4"]
-resource_name = "idle"
-length = 0.65
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprites/IdleCatt:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-
-[sub_resource type="Animation" id="Animation_okpcs"]
+[sub_resource type="Animation" id="Animation_vyulm"]
 resource_name = "idle2"
-length = 1.35
+length = 1.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -325,10 +254,75 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 }
 
-[sub_resource type="Animation" id="Animation_saba2"]
+[sub_resource type="Animation" id="Animation_5ejad"]
+resource_name = "attack"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/AttackCatt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_wvjql"]
+resource_name = "die"
+length = 25.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/Die:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_alrse"]
+resource_name = "die_noblood"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/DieCatt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_vxhvd"]
+resource_name = "hurt"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/HurtCattt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_ypsnj"]
 resource_name = "jump"
-length = 1.25
-loop_mode = 2
+length = 1.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -342,9 +336,9 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 }
 
-[sub_resource type="Animation" id="Animation_yoy75"]
+[sub_resource type="Animation" id="Animation_tj1jg"]
 resource_name = "run"
-length = 0.68
+length = 0.9
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -353,31 +347,15 @@ tracks/0/path = NodePath("sprites/RunCatt:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
+"values": [0, 1, 2, 3, 4, 5, 6, 4, 3]
 }
 
-[sub_resource type="Animation" id="Animation_jj60g"]
-resource_name = "sitting"
-length = 0.75
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprites/Sittingg:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 1]
-}
-
-[sub_resource type="Animation" id="Animation_wfbgi"]
+[sub_resource type="Animation" id="Animation_refe0"]
 resource_name = "sleep"
+length = 0.85
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -386,34 +364,94 @@ tracks/0/path = NodePath("sprites/SleepCatt:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8),
+"times": PackedFloat32Array(0, 0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_k3q5g"]
-_data = {
-"RESET": SubResource("Animation_7jkxw"),
-"attack": SubResource("Animation_n6cjp"),
-"die": SubResource("Animation_5wo25"),
-"die_noblood": SubResource("Animation_iqnsn"),
-"djump": SubResource("Animation_0kted"),
-"hurt": SubResource("Animation_2xvf4"),
-"idle": SubResource("Animation_1cby4"),
-"idle2": SubResource("Animation_okpcs"),
-"jump": SubResource("Animation_saba2"),
-"run": SubResource("Animation_yoy75"),
-"sitting": SubResource("Animation_jj60g"),
-"sleep": SubResource("Animation_wfbgi")
+[sub_resource type="Animation" id="Animation_87d6j"]
+resource_name = "sitting"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/Sittingg:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
 }
+
+[sub_resource type="Animation" id="Animation_jf6xn"]
+resource_name = "djump"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/JumpCattt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hfe0p"]
+_data = {
+"RESET": SubResource("Animation_mitu8"),
+"attack": SubResource("Animation_5ejad"),
+"die": SubResource("Animation_wvjql"),
+"die_noblood": SubResource("Animation_alrse"),
+"djump": SubResource("Animation_jf6xn"),
+"hurt": SubResource("Animation_vxhvd"),
+"idle": SubResource("Animation_f41wg"),
+"idle2": SubResource("Animation_vyulm"),
+"jump": SubResource("Animation_ypsnj"),
+"run": SubResource("Animation_tj1jg"),
+"sitting": SubResource("Animation_87d6j"),
+"sleep": SubResource("Animation_refe0")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ao8py"]
+radius = 17.3473
+height = 34.6946
 
 [sub_resource type="LabelSettings" id="LabelSettings_qh4wp"]
 font = ExtResource("11_fl8ui")
 
+[sub_resource type="Animation" id="Animation_e5pey"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nih4v"]
+_data = {
+"RESET": SubResource("Animation_e5pey")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ar44"]
+font = ExtResource("11_fl8ui")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j7x14"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
 collision_mask = 3
@@ -440,6 +478,7 @@ scale = Vector2(0.1, 0.1)
 texture = SubResource("AnimatedTexture_gyecd")
 
 [node name="Area2D" type="Area2D" parent="sprites/slash"]
+collision_mask = 16385
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sprites/slash/Area2D"]
 position = Vector2(20, 20)
@@ -487,16 +526,16 @@ visible = false
 texture = ExtResource("10_e6n4b")
 hframes = 3
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hfe0p")
+}
+autoplay = "idle"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2)
 scale = Vector2(-0.749616, -0.694317)
 shape = SubResource("CapsuleShape2D_ao8py")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_k3q5g")
-}
-autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -506,7 +545,64 @@ offset_left = -190.0
 offset_top = -101.333
 offset_right = -150.0
 offset_bottom = -78.3333
+scale = Vector2(0.8, 0.8)
 label_settings = SubResource("LabelSettings_qh4wp")
+
+[node name="coin" parent="Camera2D" instance=ExtResource("33_6qhtx")]
+texture_filter = 1
+position = Vector2(-179.867, -83.8667)
+scale = Vector2(2, 2)
+
+[node name="Clock" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-180.533, -46.5333)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("34_fm46n")
+hframes = 5
+vframes = 4
+frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/Clock"]
+libraries = {
+"": SubResource("AnimationLibrary_nih4v")
+}
+autoplay = "clock"
+
+[node name="Mobs" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-179.867, -66.5333)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("35_wwf53")
+hframes = 5
+vframes = 4
+frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/Mobs"]
+libraries = {
+"": SubResource("AnimationLibrary_nih4v")
+}
+
+[node name="coinLabel" type="Label" parent="Camera2D"]
+offset_left = -164.667
+offset_top = -89.3333
+offset_right = 249.333
+offset_bottom = -1.33334
+text = "100 / 100"
+label_settings = SubResource("LabelSettings_5ar44")
+
+[node name="clockLabel" type="Label" parent="Camera2D"]
+offset_left = -164.667
+offset_top = -50.0
+offset_right = 300.333
+offset_bottom = 38.0
+text = "156 Seconds"
+label_settings = SubResource("LabelSettings_5ar44")
+
+[node name="killedLabel" type="Label" parent="Camera2D"]
+offset_left = -165.333
+offset_top = -68.6667
+offset_right = 299.667
+offset_bottom = 19.3333
+text = "5 Slain"
+label_settings = SubResource("LabelSettings_5ar44")
 
 [node name="jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_uisnj")

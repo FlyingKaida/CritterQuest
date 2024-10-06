@@ -13,6 +13,10 @@ var action_timer = 0
 var hit_timer = 0
 var dash_timer = 0
 var webbed_timer = 0
+var burned_timer = 0
+var coins = 0
+var levelTimer = 0
+var slainCount = 0
 
 @export var options = {
 	'gore': 1,
@@ -151,11 +155,11 @@ func get_anim(_delta):
 		else:
 			$sprites/Die.visible=true
 			$AnimationPlayer.play("die")
-	#
-	#elif hit_timer > 0:
-		#$sprites/HurtCattt.visible=true
-		#$AnimationPlayer.play("hurt")
-		#hit_timer-=_delta
+			
+		
+		await get_tree().create_timer(4).timeout
+		get_tree().get_root().get_node("Main").setScores('lost', coins, 13, 0,  levelTimer, slainCount)
+		get_tree().get_root().get_node("Main").end()
 		
 	elif is_attacking:
 		$sprites/AttackCatt.visible=true
@@ -196,6 +200,9 @@ func hit(atk, enemyPos, status="none"):
 	if status == "webbed":
 		webbed_timer = 10
 		
+	if status == "fire":
+		burned_timer = 10
+		
 	hit_timer=2
 	stats.hp-=atk
 	if atk > 0:
@@ -210,6 +217,8 @@ func hit(atk, enemyPos, status="none"):
 	
 
 func _physics_process(_delta):
+	levelTimer+= _delta
+	
 	action_timer+= _delta
 	if action_timer>=1000:
 		action_timer==1000
@@ -218,6 +227,10 @@ func _physics_process(_delta):
 	if webbed_timer<=0:
 		webbed_timer=0
 		
+	burned_timer-= _delta
+	if burned_timer<=0:
+		burned_timer=0
+		
 	hide_anims()
 	get_input(_delta)
 	get_anim(_delta)
@@ -225,12 +238,14 @@ func _physics_process(_delta):
 	set_velocity(velocity)
 	move_and_slide()
 	velocity = velocity
-	$Camera2D/Label.text =  "HP: " + str(stats.hp) +"/"+str(stats.maxhp) + "\nLast acted: " + str(int(action_timer)) +  "\nHit Timer: " + str(int(hit_timer)) +  "\nVelocity: " + str(velocity)
-
+	#$Camera2D/Label.text =  "HP: " + str(stats.hp) +"/"+str(stats.maxhp) + "\nCoins: " + str(coins) + "\nSlain: " + str(slainCount) + "\nTime: " + str(int(levelTimer))
+	$Camera2D/clockLabel.text = str(int(levelTimer))
+	$Camera2D/killedLabel.text = str(slainCount)
+	$Camera2D/coinLabel.text = str(coins)
 
 
 func _on_area_2d_body_entered(body):
-	print(body)
-	if  body.name != "foreground-tilemap" and body.name != "foreground-tilemap2":
+	if body.is_in_group("monster") or body.is_in_group("interactible") :
 		body.hit(stats.atk, $".".position)
+
 
